@@ -1,0 +1,13 @@
+*resharper.user
+[Db]ebug/
+[Rr]elease/
+build/
+[Bb]in/
+[Oo]bj/
+*.suo
+*.sln.cache
+_ReSharper.*/
+*.user
+[Tt]humbs.db
+/packages/RavenDB.1.0.0.360/server/Data
+/packages/RavenDB.1.0.0.360/server/Raven.Server.log*
