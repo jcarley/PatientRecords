@@ -4,9 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Padding="10">
-        <Grid>
+             d:DesignHeight="600" 
+             d:DesignWidth="600">
+    <StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
+
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="0 0 20 0" Source="/PatientRecords;component/ApplicationFramework/Icons/customer.png" Height="132" Width="139"></Image>
+                <StackPanel>
+                    <TextBlock Text="Create a new Patient" FontSize="40" Foreground="Black"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+
+        <Grid HorizontalAlignment="Center" MinWidth="300" Margin="15 15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -17,31 +30,33 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Content="Name" />
-            <Label Grid.Column="0" Grid.Row="1" Content="Address" />
-            <Label Grid.Column="0" Grid.Row="2" Content="City" />
-            <Label Grid.Column="0" Grid.Row="3" Content="State" />
-            <Label Grid.Column="0" Grid.Row="4" Content="Zip" />
+            <Label Grid.Column="0" Grid.Row="0" Content="Name" Foreground="Black" FontSize="16" />
+            <Label Grid.Column="0" Grid.Row="1" Content="Status" Foreground="Black" FontSize="16" />
+            <Label Grid.Column="0" Grid.Row="2" Content="Street" Foreground="Black" FontSize="16" />
+            <Label Grid.Column="0" Grid.Row="3" Content="City" Foreground="Black" FontSize="16" />
+            <Label Grid.Column="0" Grid.Row="4" Content="State" Foreground="Black" FontSize="16" />
+            <Label Grid.Column="0" Grid.Row="5" Content="Zip" Foreground="Black" FontSize="16" />
 
 
-            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Command.Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Command.Address, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Command.City, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=Command.State, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Path=Command.Zip, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-
-            <Grid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Grid.IsSharedSizeScope="True" HorizontalAlignment="Right">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition SharedSizeGroup="Buttons" />
-                    <ColumnDefinition SharedSizeGroup="Buttons" />
-                </Grid.ColumnDefinitions>
-                <Button Content="OK" Padding="3.5,0,3.5,0" Margin="3" Command="{Binding CreateCustomer}" />
-                <Button Content="Cancel" Padding="3.5,0,3.5,0" Grid.Column="1" Margin="3.5" Command="{Binding CancelCreate}" />
-            </Grid>
+            <TextBox Grid.Column="1" Text="{Binding Path=Command.Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Command.Status, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Command.Street, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=Command.City, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Path=Command.State, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Path=Command.Zip, Mode=TwoWay, UpdateSourceTrigger=LostFocus, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
 
         </Grid>
-    </Border>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <Button Content="OK" Width="100" Margin="3.5" Command="{Binding CreateCustomer}" />
+            <Button Content="Cancel" Width="100" Margin="3.5" Command="{Binding CancelCreate}" />
+
+        </StackPanel>
+
+    </StackPanel>
+    
 </UserControl>

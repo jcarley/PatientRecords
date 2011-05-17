@@ -9,10 +9,10 @@ using StructureMap;
 
 namespace Infrastructure.Bus
 {
-    
     public class InProcessBus : IBus, IPublishMessages
     {
-        private readonly Dictionary<Type, List<Action<DomainEvent>>> _routes = new Dictionary<Type, List<Action<DomainEvent>>>();
+        private readonly Dictionary<Type, List<Action<DomainEvent>>> _routes = 
+            new Dictionary<Type, List<Action<DomainEvent>>>();
 
         public InProcessBus()
         {

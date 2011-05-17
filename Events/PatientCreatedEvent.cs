@@ -11,9 +11,10 @@ namespace Events
         public string State { get; set; }
         public string Zip { get; set; }
 
-        public PatientCreatedEvent(Guid id, string name, string status, string street, string city, string state, string zip)
+        public PatientCreatedEvent(Guid id, Guid clientId, string name, string status, string street, string city, string state, string zip)
         {
             AggregateId = id;
+            ClientId = clientId;
             Name = name;
             Status = status;
             Street = street;

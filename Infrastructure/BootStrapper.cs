@@ -39,8 +39,11 @@ namespace Infrastructure
 
         private static void SetupEventHandlers(IBus bus, IDocumentStore documentStore)
         {
-            var patientEventHandler = new PatientEventHandler(documentStore);
+            var patientEventHandler = new PatientView(documentStore);
             bus.RegisterHandler<PatientCreatedEvent>(patientEventHandler.Handle);
+
+            var patientEventPublisher = new PatientEventPublisher();
+            bus.RegisterHandler<PatientCreatedEvent>(patientEventPublisher.Handle);
         }
     }
 }

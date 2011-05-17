@@ -4,6 +4,7 @@ namespace PatientRecords.ApplicationFramework
 {
     public static class Notifications
     {
+        public static readonly string SearchForPatient = Guid.NewGuid().ToString();
         public static readonly string ShowPatientDetails = Guid.NewGuid().ToString();
         public static readonly string CreateNewPatient = Guid.NewGuid().ToString();
     }

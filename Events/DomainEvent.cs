@@ -9,5 +9,6 @@ namespace Events
     public class DomainEvent
     {
         public Guid AggregateId { get; set; }
+        public Guid ClientId { get; set; }
     }
 }

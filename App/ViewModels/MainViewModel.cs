@@ -1,6 +1,8 @@
 using System;
 using System.Windows.Controls;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using PatientRecords.ApplicationFramework;
 using PatientRecords.ApplicationFramework.Events;
@@ -10,17 +12,12 @@ namespace PatientRecords.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        //private IReadRepository _repository = null;
-        //private IBus _bus = null;
-
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            //_repository = repository;
-            //_bus = bus;
-
+            Messenger.Default.Register<SearchForPatientEvent>(this, Notifications.SearchForPatient, OnSearchForPatient);
             Messenger.Default.Register<ShowPatientDetailsEvent>(this, Notifications.ShowPatientDetails, OnShowPatientDetails);
             Messenger.Default.Register<CreateNewPatientEvent>(this, Notifications.CreateNewPatient, OnCreateNewPatient);
         }
@@ -32,6 +29,46 @@ namespace PatientRecords.ViewModels
                 return "Patient Records v1.0";
             }
         }
+
+        #region Commands
+
+        private ICommand _customerSearch = null;
+
+        public ICommand CustomerSearch
+        {
+            get
+            {
+                if (_customerSearch == null)
+                {
+                    _customerSearch = new RelayCommand(() =>
+                    {
+                        Messenger.Default.Send(new SearchForPatientEvent(), Notifications.SearchForPatient);
+                    });
+                }
+
+                return _customerSearch;
+            }
+        }
+
+        private ICommand _addNewCustomer = null;
+
+        public ICommand AddNewCustomer
+        {
+            get
+            {
+                if (_addNewCustomer == null)
+                {
+                    _addNewCustomer = new RelayCommand(() =>
+                    {
+                        Messenger.Default.Send(new CreateNewPatientEvent(), Notifications.CreateNewPatient);
+                    });
+                }
+
+                return _addNewCustomer;
+            }
+        }
+
+        #endregion
 
         #region Activate Item
 
@@ -59,6 +96,10 @@ namespace PatientRecords.ViewModels
         public void ActivateItem<T>(T viewModel)
             where T : ViewModelBase
         {
+            // can not replace the current active item with the same type of item
+            if (_activeItem != null && (_activeItem as UserControl).DataContext is T)
+                return;
+
             Type t = typeof(T);
 
             string name = t.Name;
@@ -72,6 +113,16 @@ namespace PatientRecords.ViewModels
             UserControl control = Activator.CreateInstance(viewType) as UserControl;
 
             control.DataContext = viewModel;
+
+            if (_activeItem != null)
+            {
+                IDisposable disposable = _activeItem as IDisposable;
+
+                if (disposable != null)
+                    disposable.Dispose();
+
+                _activeItem = null;
+            }
 
             _activeItem = control;
 
@@ -90,10 +141,15 @@ namespace PatientRecords.ViewModels
 
         #region Event Handlers
 
+        private void OnSearchForPatient(SearchForPatientEvent evt)
+        {
+            var viewModel = ObjectFactory.GetInstance<PatientSearchViewModel>();
+            ActivateItem(viewModel);
+        }
+
         private void OnShowPatientDetails(ShowPatientDetailsEvent evt)
         {
             string patientId = evt.PatientId;
-            //var viewModel = new PatientDetailsViewModel(patientId, _repository);
 
             var viewModel = ObjectFactory
                 .With<string>(patientId)
@@ -104,7 +160,6 @@ namespace PatientRecords.ViewModels
 
         private void OnCreateNewPatient(CreateNewPatientEvent evt)
         {
-            //var viewModel = new CreatePatientViewModel(_bus);
             var viewModel = ObjectFactory.GetInstance<CreatePatientViewModel>();
             ActivateItem(viewModel);
         }

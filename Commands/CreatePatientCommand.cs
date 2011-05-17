@@ -7,8 +7,8 @@ namespace Commands
 {
     public class CreatePatientCommand : Command
     {
-        public CreatePatientCommand(Guid id)
-            : base(id)
+        public CreatePatientCommand(Guid id, Guid clientId)
+            : base(id, clientId)
         {
         }
 

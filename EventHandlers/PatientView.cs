@@ -4,11 +4,11 @@ using Reporting;
 
 namespace EventHandlers
 {
-    public class PatientEventHandler : IHandlesEvent<PatientCreatedEvent>
+    public class PatientView : IHandlesEvent<PatientCreatedEvent>
     {
         private IDocumentStore _documentStore = null;
 
-        public PatientEventHandler(IDocumentStore documentStore)
+        public PatientView(IDocumentStore documentStore)
         {
             _documentStore = documentStore;
         }
@@ -31,6 +31,14 @@ namespace EventHandlers
                 session.Store(dto);
                 session.SaveChanges();
             }
+        }
+    }
+
+    public class PatientEventPublisher : IHandlesEvent<PatientCreatedEvent>
+    {
+        public void Handle(PatientCreatedEvent domainEvent)
+        {
+            
         }
     }
 }

@@ -18,6 +18,7 @@ namespace CommandHandlers
         {
             var patient = Patient.CreateNew(
                 command.Id,
+                command.ClientId,
                 new PatientName(command.Name),
                 new PatientStatus(command.Status),
                 new Address(command.Street, command.City, command.State, command.Zip)

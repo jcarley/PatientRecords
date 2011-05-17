@@ -26,10 +26,10 @@
 
             <ribbon:RibbonTab x:Name="HomeTab" Header="Home">
                 <ribbon:RibbonGroup Header="Search">
-                    <ribbon:RibbonButton x:Name="SearchCustomer" LargeImageSource="ApplicationFramework\Icons\customers.png" Label="Customer search" />
+                    <ribbon:RibbonButton x:Name="SearchCustomer" LargeImageSource="ApplicationFramework\Icons\customers.png" Label="Customer search" Command="{Binding CustomerSearch}" />
                 </ribbon:RibbonGroup>
                 <ribbon:RibbonGroup Header="Customer Details">
-                    <ribbon:RibbonButton x:Name="AddNewCustomer" LargeImageSource="ApplicationFramework\Icons\customer.png" Label="Add new customer" />
+                    <ribbon:RibbonButton x:Name="AddNewCustomer" LargeImageSource="ApplicationFramework\Icons\customer.png" Label="Add new customer" Command="{Binding AddNewCustomer}" />
                 </ribbon:RibbonGroup>
             </ribbon:RibbonTab>
 
