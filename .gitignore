@@ -11,3 +11,4 @@ _ReSharper.*/
 [Tt]humbs.db
 /packages/RavenDB.1.0.0.360/server/Data
 /packages/RavenDB.1.0.0.360/server/Raven.Server.log*
+*.docstates
