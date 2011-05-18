@@ -3,7 +3,6 @@ using System.Windows.Input;
 using Commands;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using Infrastructure;
 using PatientRecords.ApplicationFramework;
 using PatientRecords.ApplicationFramework.Events;
@@ -40,7 +39,7 @@ namespace PatientRecords.ViewModels
                     _createCustomer = new RelayCommand(() =>
                     {
                         _bus.Send(_command);
-                        Messenger.Default.Send(new SearchForPatientEvent(), Notifications.SearchForPatient);
+                        Notifications.SearchForPatientMessage.Send(new SearchForPatientEvent());
                     });
                 }
                 return _createCustomer;
@@ -57,7 +56,7 @@ namespace PatientRecords.ViewModels
                 {
                     _cancelCreate = new RelayCommand(() =>
                     {
-                        Messenger.Default.Send(new SearchForPatientEvent(), Notifications.SearchForPatient);
+                        Notifications.SearchForPatientMessage.Send(new SearchForPatientEvent());
                     });
                 }
                 return _cancelCreate;

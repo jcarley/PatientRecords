@@ -45,9 +45,7 @@ namespace PatientRecords.ViewModels
                     _showDetails = new RelayCommand(
                         () =>
                         {
-                            Messenger.Default.Send(
-                                new ShowPatientDetailsEvent(_patient.Id), 
-                                Notifications.ShowPatientDetails);
+                            Notifications.ShowPatientDetailsMessage.Send(new ShowPatientDetailsEvent(_patient.Id));
                         }
                     );
                 }

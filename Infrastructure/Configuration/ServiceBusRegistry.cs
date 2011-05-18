@@ -12,6 +12,7 @@ using Raven.Client.Document;
 using Reporting;
 using StructureMap.Configuration.DSL;
 
+
 namespace Infrastructure.Configuration
 {
     public class ServiceBusRegistry : Registry

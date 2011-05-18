@@ -1,9 +1,9 @@
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using PatientRecords.ApplicationFramework;
 using PatientRecords.ApplicationFramework.Events;
 using StructureMap;
@@ -17,9 +17,9 @@ namespace PatientRecords.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            Messenger.Default.Register<SearchForPatientEvent>(this, Notifications.SearchForPatient, OnSearchForPatient);
-            Messenger.Default.Register<ShowPatientDetailsEvent>(this, Notifications.ShowPatientDetails, OnShowPatientDetails);
-            Messenger.Default.Register<CreateNewPatientEvent>(this, Notifications.CreateNewPatient, OnCreateNewPatient);
+            Notifications.SearchForPatientMessage.Register(this, OnSearchForPatient);
+            Notifications.ShowPatientDetailsMessage.Register(this, OnShowPatientDetails);
+            Notifications.CreateNewPatientMessage.Register(this, OnCreateNewPatient);
         }
 
         public string Welcome
@@ -42,7 +42,7 @@ namespace PatientRecords.ViewModels
                 {
                     _customerSearch = new RelayCommand(() =>
                     {
-                        Messenger.Default.Send(new SearchForPatientEvent(), Notifications.SearchForPatient);
+                        Notifications.SearchForPatientMessage.Send(new SearchForPatientEvent());
                     });
                 }
 
@@ -60,11 +60,29 @@ namespace PatientRecords.ViewModels
                 {
                     _addNewCustomer = new RelayCommand(() =>
                     {
-                        Messenger.Default.Send(new CreateNewPatientEvent(), Notifications.CreateNewPatient);
+                        Notifications.CreateNewPatientMessage.Send(new CreateNewPatientEvent());
                     });
                 }
 
                 return _addNewCustomer;
+            }
+        }
+
+        private ICommand _exit = null;
+
+        public ICommand Exit
+        {
+            get
+            {
+                if (_exit == null)
+                {
+                    _exit = new RelayCommand(() =>
+                    {
+                        Application.Current.Shutdown();
+                    });
+                }
+
+                return _exit;
             }
         }
 

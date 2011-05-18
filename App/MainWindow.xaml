@@ -20,7 +20,7 @@
         <ribbon:Ribbon>
             <ribbon:Ribbon.ApplicationMenu>
                 <ribbon:RibbonApplicationMenu SmallImageSource="ApplicationFramework\Icons\customers.png">
-                    <ribbon:RibbonApplicationMenuItem Header="Hello _Ribbon" ImageSource="ApplicationFramework\Icons\customers.png"/>
+                    <ribbon:RibbonApplicationMenuItem Header="E_xit" Command="{Binding Exit}" />
                 </ribbon:RibbonApplicationMenu>
             </ribbon:Ribbon.ApplicationMenu>
 

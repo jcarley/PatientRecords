@@ -1,10 +1,9 @@
-﻿using GalaSoft.MvvmLight;
-using Reporting;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using PatientRecords.ApplicationFramework.Events;
 using PatientRecords.ApplicationFramework;
+using PatientRecords.ApplicationFramework.Events;
+using Reporting;
 
 namespace PatientRecords.ViewModels
 {
@@ -38,7 +37,7 @@ namespace PatientRecords.ViewModels
                 {
                     _done = new RelayCommand(() =>
                     {
-                        Messenger.Default.Send(new SearchForPatientEvent(), Notifications.SearchForPatient);
+                        Notifications.SearchForPatientMessage.Send(new SearchForPatientEvent());
                     });
                 }
                 return _done;
