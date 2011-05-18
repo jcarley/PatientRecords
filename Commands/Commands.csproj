@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangePatientNameCommand.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="CreatePatientCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

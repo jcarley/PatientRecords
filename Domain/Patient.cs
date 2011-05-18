@@ -14,14 +14,14 @@ namespace Domain
         {
         }
 
-        private Patient(Guid id, Guid clientId, PatientName patientName, PatientStatus patientStatus, Address address)
+        private Patient(Guid id, PatientName patientName, PatientStatus patientStatus, Address address)
         {
-            RaiseEvent(new PatientCreatedEvent(id, clientId, patientName.Name, patientStatus.Status, address.Street, address.City, address.State, address.Zip));
+            RaiseEvent(new PatientCreatedEvent(id, patientName.Name, patientStatus.Status, address.Street, address.City, address.State, address.Zip));
         }
 
-        public static Patient CreateNew(Guid id, Guid clientId, PatientName patientName, PatientStatus patientStatus, Address address)
+        public static Patient CreateNew(Guid id, PatientName patientName, PatientStatus patientStatus, Address address)
         {
-            return new Patient(id, clientId, patientName, patientStatus, address);
+            return new Patient(id, patientName, patientStatus, address);
         }
 
         //Domain-Eventhandlers

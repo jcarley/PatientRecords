@@ -43,5 +43,41 @@ namespace PatientRecords.ViewModels
                 return _done;
             }
         }
+
+        private ICommand _relocatePatient = null;
+
+        public ICommand RelocatePatient
+        {
+            get
+            {
+                if (_relocatePatient == null)
+                {
+                    _relocatePatient = new RelayCommand(() =>
+                    {
+                        // do something
+                    });
+                }
+
+                return _relocatePatient;
+            }
+        }
+
+        private ICommand _changePatientName = null;
+
+        public ICommand ChangePatientName
+        {
+            get
+            {
+                if (_changePatientName == null)
+                {
+                    _changePatientName = new RelayCommand(() =>
+                    {
+                        // do something
+                    });
+                }
+
+                return _changePatientName;
+            }
+        }
     }
 }

@@ -83,6 +83,7 @@
     <Compile Include="ApplicationFramework\Events\SearchForPatientEvent.cs" />
     <Compile Include="ApplicationFramework\Events\ShowPatientDetailsEvent.cs" />
     <Compile Include="ApplicationFramework\Notifications.cs" />
+    <Compile Include="ViewModels\ChangePatientNameViewModel.cs" />
     <Compile Include="ViewModels\CreatePatientViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PatientDetailsViewModel.cs" />
@@ -90,6 +91,9 @@
     <Compile Include="ViewModels\PatientSearchViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\ViewModelRegistry.cs" />
+    <Compile Include="Views\ChangePatientNameView.xaml.cs">
+      <DependentUpon>ChangePatientNameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreatePatientView.xaml.cs">
       <DependentUpon>CreatePatientView.xaml</DependentUpon>
     </Compile>
@@ -118,6 +122,10 @@
     <Page Include="Themes\ExpressionDark.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChangePatientNameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreatePatientView.xaml">
       <SubType>Designer</SubType>

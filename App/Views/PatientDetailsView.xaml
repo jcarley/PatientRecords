@@ -47,8 +47,8 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
             <Button Content="Done" Width="100" Margin="0 0 5 0" Command="{Binding Done}" />
-            <Button Content="Name Changed" Width="100" Margin="0 0 5 0" />
-            <Button Content="Relocate" Width="100" />
+            <Button Content="Name Changed" Width="100" Margin="0 0 5 0" Command="{Binding ChangePatientName}" />
+            <Button Content="Relocate" Width="100" Command="{Binding RelocatePatient}" />
 
         </StackPanel>
 

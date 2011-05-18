@@ -17,7 +17,7 @@ namespace PatientRecords.ViewModels
         public CreatePatientViewModel(IBus bus)
         {
             _bus = bus;
-            _command = new CreatePatientCommand(Guid.NewGuid(), ClientIdentification.Id);
+            _command = new CreatePatientCommand(Guid.NewGuid());
         }
 
         public CreatePatientCommand Command

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Commands
 {
     public class CreatePatientCommand : Command
     {
-        public CreatePatientCommand(Guid id, Guid clientId)
-            : base(id, clientId)
+        public CreatePatientCommand(Guid id)
+            : base(id)
         {
         }
 
