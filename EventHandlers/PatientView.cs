@@ -4,7 +4,7 @@ using Reporting;
 
 namespace EventHandlers
 {
-    public class PatientView : IHandlesEvent<PatientCreatedEvent>
+    public class PatientView : IHandlesEvent<PatientCreatedEvent>, IHandlesEvent<PatientNameChanged>
     {
         private IDocumentStore _documentStore = null;
 
@@ -32,13 +32,23 @@ namespace EventHandlers
                 session.SaveChanges();
             }
         }
-    }
 
-    public class PatientEventPublisher : IHandlesEvent<PatientCreatedEvent>
-    {
-        public void Handle(PatientCreatedEvent domainEvent)
+        public void Handle(PatientNameChanged domainEvent)
         {
-            
+            using (var session = _documentStore.OpenSession())
+            {
+                var dto = session.Load<PatientDto>(DtoBase.GetDtoIdOf<PatientDto>(domainEvent.AggregateId));
+                dto.Name = domainEvent.Name;
+                session.SaveChanges();
+            }
         }
     }
+
+    //public class PatientEventPublisher : IHandlesEvent<PatientCreatedEvent>
+    //{
+    //    public void Handle(PatientCreatedEvent domainEvent)
+    //    {
+    //        
+    //    }
+    //}
 }

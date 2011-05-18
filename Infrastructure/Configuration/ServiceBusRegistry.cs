@@ -42,6 +42,9 @@ namespace Infrastructure.Configuration
 
             For<IHandles<CreatePatientCommand>>()
                 .Use<CreatePatientCommandHandler>();
+
+            For<IHandles<ChangePatientNameCommand>>()
+                .Use<ChangePatientNameCommandHandler>();
         }
 
         private IStoreEvents GetInitializedEventStore(IPublishMessages bus)

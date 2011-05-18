@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangePatientNameCommandHandler.cs" />
     <Compile Include="CreatePatientCommandHandler.cs" />
     <Compile Include="IHandles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

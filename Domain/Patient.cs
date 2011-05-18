@@ -24,6 +24,16 @@ namespace Domain
             return new Patient(id, patientName, patientStatus, address);
         }
 
+        public void ChangeName(string name)
+        {
+            if (Id == Guid.Empty)
+            {
+                throw new NonExistingPatientException("The patient is not created and no operations can be executed on it.");
+            }
+
+            RaiseEvent(new PatientNameChanged(Id, name));
+        }
+
         //Domain-Eventhandlers
         private void Apply(PatientCreatedEvent evt)
         {
@@ -31,6 +41,11 @@ namespace Domain
             _name = new PatientName(evt.Name);
             _status = new PatientStatus(evt.Status);
             _address = new Address(evt.Street, evt.City, evt.State, evt.Zip);
+        }
+
+        private void Apply(PatientNameChanged evt)
+        {
+            _name = _name.Change(evt.Name);
         }
     }
 
@@ -41,6 +56,11 @@ namespace Domain
         public PatientName(string name)
         {
             Name = name;
+        }
+
+        public PatientName Change(string name)
+        {
+            return new PatientName(name);
         }
     }
 

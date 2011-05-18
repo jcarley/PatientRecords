@@ -41,9 +41,10 @@ namespace Infrastructure
         {
             var patientEventHandler = new PatientView(documentStore);
             bus.RegisterHandler<PatientCreatedEvent>(patientEventHandler.Handle);
+            bus.RegisterHandler<PatientNameChanged>(patientEventHandler.Handle);
 
-            var patientEventPublisher = new PatientEventPublisher();
-            bus.RegisterHandler<PatientCreatedEvent>(patientEventPublisher.Handle);
+            //var patientEventPublisher = new PatientEventPublisher();
+            //bus.RegisterHandler<PatientCreatedEvent>(patientEventPublisher.Handle);
         }
     }
 }
