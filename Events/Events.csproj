@@ -43,6 +43,7 @@
     <Compile Include="DomainEvent.cs" />
     <Compile Include="PatientCreatedEvent.cs" />
     <Compile Include="PatientNameChanged.cs" />
+    <Compile Include="PatientRelocated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

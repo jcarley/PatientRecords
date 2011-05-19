@@ -20,6 +20,7 @@ namespace PatientRecords.ViewModels
             Notifications.SearchForPatientMessage.Register(this, OnSearchForPatient);
             Notifications.ShowPatientDetailsMessage.Register(this, OnShowPatientDetails);
             Notifications.CreateNewPatientMessage.Register(this, OnCreateNewPatient);
+            Notifications.ChangePatientNameMessage.Register(this, OnChangePatientName);
         }
 
         public string Welcome
@@ -167,10 +168,10 @@ namespace PatientRecords.ViewModels
 
         private void OnShowPatientDetails(ShowPatientDetailsEvent evt)
         {
-            string patientId = evt.PatientId;
+            Guid patientId = evt.PatientId;
 
             var viewModel = ObjectFactory
-                .With<string>(patientId)
+                .With<Guid>(patientId)
                 .GetInstance<PatientDetailsViewModel>();
 
             ActivateItem(viewModel);
@@ -179,6 +180,15 @@ namespace PatientRecords.ViewModels
         private void OnCreateNewPatient(CreateNewPatientEvent evt)
         {
             var viewModel = ObjectFactory.GetInstance<CreatePatientViewModel>();
+            ActivateItem(viewModel);
+        }
+
+        private void OnChangePatientName(ChangePatientNameEvent evt)
+        {
+            var viewModel = ObjectFactory
+                .With<Guid>(evt.PatientId)
+                .GetInstance<ChangePatientNameViewModel>();
+
             ActivateItem(viewModel);
         }
 

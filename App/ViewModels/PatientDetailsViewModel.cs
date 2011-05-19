@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using PatientRecords.ApplicationFramework;
 using PatientRecords.ApplicationFramework.Events;
 using Reporting;
+using System;
 
 namespace PatientRecords.ViewModels
 {
@@ -14,9 +15,9 @@ namespace PatientRecords.ViewModels
         /// <summary>
         /// Initializes a new instance of the PatientDetailsViewModel class.
         /// </summary>
-        public PatientDetailsViewModel(string patientId, IReadRepository repository)
+        public PatientDetailsViewModel(Guid patientId, IReadRepository repository)
         {
-            _patient = repository.GetById<PatientDto>(patientId);
+            _patient = repository.GetById<PatientDto>(DtoBase.GetDtoIdOf<PatientDto>(patientId));
         }
 
         public PatientDto Patient
@@ -72,7 +73,7 @@ namespace PatientRecords.ViewModels
                 {
                     _changePatientName = new RelayCommand(() =>
                     {
-                        // do something
+                        Notifications.ChangePatientNameMessage.Send(new ChangePatientNameEvent(_patient.AggregateRootId));
                     });
                 }
 

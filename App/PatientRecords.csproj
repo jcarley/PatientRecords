@@ -79,7 +79,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationFramework\ClientIdentification.cs" />
+    <Compile Include="ApplicationFramework\Events\ChangePatientNameEvent.cs" />
     <Compile Include="ApplicationFramework\Events\CreateNewPatientEvent.cs" />
+    <Compile Include="ApplicationFramework\Events\RelocatePatientEvent.cs" />
     <Compile Include="ApplicationFramework\Events\SearchForPatientEvent.cs" />
     <Compile Include="ApplicationFramework\Events\ShowPatientDetailsEvent.cs" />
     <Compile Include="ApplicationFramework\Notifications.cs" />

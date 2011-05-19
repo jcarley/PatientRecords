@@ -4,7 +4,7 @@ using Reporting;
 
 namespace EventHandlers
 {
-    public class PatientView : IHandlesEvent<PatientCreatedEvent>, IHandlesEvent<PatientNameChanged>
+    public class PatientView : IHandlesEvent<PatientCreatedEvent>, IHandlesEvent<PatientNameChangedEvent>, IHandlesEvent<PatientRelocatedEvent>
     {
         private IDocumentStore _documentStore = null;
 
@@ -33,12 +33,25 @@ namespace EventHandlers
             }
         }
 
-        public void Handle(PatientNameChanged domainEvent)
+        public void Handle(PatientNameChangedEvent domainEvent)
         {
             using (var session = _documentStore.OpenSession())
             {
                 var dto = session.Load<PatientDto>(DtoBase.GetDtoIdOf<PatientDto>(domainEvent.AggregateId));
                 dto.Name = domainEvent.Name;
+                session.SaveChanges();
+            }
+        }
+
+        public void Handle(PatientRelocatedEvent domainEvent)
+        {
+            using (var session = _documentStore.OpenSession())
+            {
+                var dto = session.Load<PatientDto>(DtoBase.GetDtoIdOf<PatientDto>(domainEvent.AggregateId));
+                dto.Street = domainEvent.Street;
+                dto.City = domainEvent.City;
+                dto.State = domainEvent.State;
+                dto.Zip = domainEvent.Zip;
                 session.SaveChanges();
             }
         }

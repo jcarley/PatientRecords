@@ -2,9 +2,9 @@
 
 namespace Events
 {
-    public class PatientNameChanged : DomainEvent
+    public class PatientNameChangedEvent : DomainEvent
     {
-        public PatientNameChanged(Guid id, string name)
+        public PatientNameChangedEvent(Guid id, string name)
         {
             AggregateId = id;
             Name = name;

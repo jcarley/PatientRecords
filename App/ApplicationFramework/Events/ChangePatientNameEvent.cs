@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 
 namespace PatientRecords.ApplicationFramework.Events
 {
-    public class ShowPatientDetailsEvent
+    public class ChangePatientNameEvent
     {
         public Guid PatientId { get; set; }
 
-        public ShowPatientDetailsEvent(Guid id)
+        public ChangePatientNameEvent(Guid id)
         {
             PatientId = id;
         }

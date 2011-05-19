@@ -45,7 +45,7 @@ namespace PatientRecords.ViewModels
                     _showDetails = new RelayCommand(
                         () =>
                         {
-                            Notifications.ShowPatientDetailsMessage.Send(new ShowPatientDetailsEvent(_patient.Id));
+                            Notifications.ShowPatientDetailsMessage.Send(new ShowPatientDetailsEvent(_patient.AggregateRootId));
                         }
                     );
                 }

@@ -51,7 +51,7 @@ namespace Infrastructure.Configuration
         {
             return Wireup.Init()
                 .UsingRavenPersistence(AppConfig.ConnectionStringName, new NullDocumentSerializer())
-                .UsingAsynchronousDispatcher(bus)
+                .UsingSynchronousDispatcher(bus)
                 .Build();
         }
     }
