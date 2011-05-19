@@ -75,7 +75,7 @@ namespace Domain
 
         private void Apply(PatientNameChangedEvent evt)
         {
-            _name = _name.Change(evt.Name);
+            _name = new PatientName(evt.Name);
         }
 
         private void Apply(PatientRelocatedEvent evt)
@@ -91,11 +91,6 @@ namespace Domain
         public PatientName(string name)
         {
             Name = name;
-        }
-
-        public PatientName Change(string name)
-        {
-            return new PatientName(name);
         }
     }
 
