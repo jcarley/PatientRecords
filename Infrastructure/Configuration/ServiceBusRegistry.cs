@@ -21,7 +21,7 @@ namespace Infrastructure.Configuration
         {
             For<IDocumentStore>()
                 .Singleton()
-                .Use(new DocumentStore { ConnectionStringName = AppConfig.ConnectionStringName })
+                .Use(new DocumentStore { ConnectionStringName = AppConfig.RavenDBConnectionStringName })
                 .OnCreation<IDocumentStore>(store => store.Initialize());
 
             var bus = new InProcessBus();
@@ -49,8 +49,11 @@ namespace Infrastructure.Configuration
 
         private IStoreEvents GetInitializedEventStore(IPublishMessages bus)
         {
+            string name = AppConfig.SqlDBConnectionStringName;
+
+            
             return Wireup.Init()
-                .UsingRavenPersistence(AppConfig.ConnectionStringName, new NullDocumentSerializer())
+                .UsingRavenPersistence(AppConfig.RavenDBConnectionStringName, new NullDocumentSerializer())
                 .UsingSynchronousDispatcher(bus)
                 .Build();
         }

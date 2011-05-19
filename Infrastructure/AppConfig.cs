@@ -7,11 +7,19 @@ namespace Infrastructure
 {
     public static class AppConfig
     {
-        public static string ConnectionStringName
+        public static string RavenDBConnectionStringName
         {
             get
             {
                 return "RavenDB";
+            }
+        }
+
+        public static string SqlDBConnectionStringName
+        {
+            get
+            {
+                return "PatientDBEventStore";
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using CommonDomain.Core;
 using Events;
+using CommonDomain;
 
 namespace Domain
 {
@@ -19,11 +20,23 @@ namespace Domain
             RaiseEvent(new PatientCreatedEvent(id, patientName.Name, patientStatus.Status, address.Street, address.City, address.State, address.Zip));
         }
 
+        /// <summary>
+        /// Creates a new patient record
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="patientName"></param>
+        /// <param name="patientStatus"></param>
+        /// <param name="address"></param>
+        /// <returns></returns>
         public static Patient CreateNew(Guid id, PatientName patientName, PatientStatus patientStatus, Address address)
         {
             return new Patient(id, patientName, patientStatus, address);
         }
 
+        /// <summary>
+        /// Changes the name of the patient
+        /// </summary>
+        /// <param name="name"></param>
         public void ChangeName(string name)
         {
             if (Id == Guid.Empty)
@@ -34,6 +47,13 @@ namespace Domain
             RaiseEvent(new PatientNameChangedEvent(Id, name));
         }
 
+        /// <summary>
+        /// Sets the address of where the patient has relocated too.
+        /// </summary>
+        /// <param name="street"></param>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="zip"></param>
         public void Relocate(string street, string city, string state, string zip)
         {
             if (Id == Guid.Empty)
@@ -66,7 +86,7 @@ namespace Domain
 
     public class PatientName
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         public PatientName(string name)
         {
@@ -81,7 +101,7 @@ namespace Domain
 
     public class PatientStatus
     {
-        public string Status { get; set; }
+        public string Status { get; private set; }
 
         public PatientStatus(string status)
         {
@@ -91,10 +111,10 @@ namespace Domain
 
     public class Address
     {
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
+        public string Street { get; private set; }
+        public string City { get; private set; }
+        public string State { get; private set; }
+        public string Zip { get; private set; }
 
         public Address(string street, string city, string state, string zip)
         {
