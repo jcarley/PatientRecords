@@ -32,16 +32,37 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonDomain">
-      <HintPath>..\packages\CommonDomain\bin\CommonDomain.dll</HintPath>
+      <HintPath>..\packages\CommonDomain\lib\CommonDomain.dll</HintPath>
     </Reference>
     <Reference Include="EventStore">
-      <HintPath>..\packages\CommonDomain\bin\EventStore.dll</HintPath>
+      <HintPath>..\packages\CommonDomain\lib\EventStore.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Core">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Persistence.SqlPersistence">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Persistence.SqlPersistence.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Serialization">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Serialization.Json">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Serialization.Json.Wireup">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Serialization.Json.Wireup.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Wireup">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Wireup.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4, Version=3.0.0.30137, Culture=neutral, PublicKeyToken=e80d33351f9dc0a2, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLight.3.0.2\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.WPF4, Version=3.0.0.30125, Culture=neutral, PublicKeyToken=6fcde8ddc3781e3e, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLight.3.0.2\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\CommonDomain\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
