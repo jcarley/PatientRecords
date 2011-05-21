@@ -1,23 +1,22 @@
 ﻿using Events;
-using Raven.Client;
 using Reporting;
 
 namespace EventHandlers
 {
     public class PatientView : IHandlesEvent<PatientCreatedEvent>, IHandlesEvent<PatientNameChangedEvent>, IHandlesEvent<PatientRelocatedEvent>
     {
-        private IDocumentStore _documentStore = null;
+        private IReportingRepository<PatientDto> _reportingRepository = null;
 
-        public PatientView(IDocumentStore documentStore)
+        public PatientView(IReportingRepository<PatientDto> reportingRepository)
         {
-            _documentStore = documentStore;
+            _reportingRepository = reportingRepository;
         }
 
         public void Handle(PatientCreatedEvent domainEvent)
         {
             var dto = new PatientDto()
             {
-                AggregateRootId = domainEvent.AggregateId,
+                Id = domainEvent.AggregateId,
                 Name = domainEvent.Name,
                 Status = domainEvent.Status,
                 Street = domainEvent.Street,
@@ -26,34 +25,24 @@ namespace EventHandlers
                 Zip = domainEvent.Zip
             };
 
-            using (var session = _documentStore.OpenSession())
-            {
-                session.Store(dto);
-                session.SaveChanges();
-            }
+            _reportingRepository.Insert(dto);
         }
 
         public void Handle(PatientNameChangedEvent domainEvent)
         {
-            using (var session = _documentStore.OpenSession())
-            {
-                var dto = session.Load<PatientDto>(DtoBase.GetDtoIdOf<PatientDto>(domainEvent.AggregateId));
-                dto.Name = domainEvent.Name;
-                session.SaveChanges();
-            }
+            PatientDto dto = _reportingRepository.GetById(domainEvent.AggregateId);
+            dto.Name = domainEvent.Name;
+            _reportingRepository.Update(dto);
         }
 
         public void Handle(PatientRelocatedEvent domainEvent)
         {
-            using (var session = _documentStore.OpenSession())
-            {
-                var dto = session.Load<PatientDto>(DtoBase.GetDtoIdOf<PatientDto>(domainEvent.AggregateId));
-                dto.Street = domainEvent.Street;
-                dto.City = domainEvent.City;
-                dto.State = domainEvent.State;
-                dto.Zip = domainEvent.Zip;
-                session.SaveChanges();
-            }
+            PatientDto dto = _reportingRepository.GetById(domainEvent.AggregateId);
+            dto.Street = domainEvent.Street;
+            dto.City = domainEvent.City;
+            dto.State = domainEvent.State;
+            dto.Zip = domainEvent.Zip;
+            _reportingRepository.Update(dto);
         }
     }
 

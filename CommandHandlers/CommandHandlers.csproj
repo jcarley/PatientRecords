@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonDomain, Version=1.2.0.0, Culture=neutral, PublicKeyToken=ec37a15dc44010cd, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonDomain\bin\CommonDomain.dll</HintPath>
+      <HintPath>..\packages\CommonDomain\lib\CommonDomain.dll</HintPath>
     </Reference>
-    <Reference Include="EventStore.Persistence.RavenPersistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7735eb81c0bd9948, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonDomain\bin\EventStore.Persistence.RavenPersistence.dll</HintPath>
+    <Reference Include="EventStore.Persistence.SqlPersistence">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Persistence.SqlPersistence.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

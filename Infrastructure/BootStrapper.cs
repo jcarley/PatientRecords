@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using EventHandlers;
 using Events;
-using Raven.Client;
 using StructureMap;
+using Reporting;
 
 namespace Infrastructure
 {
@@ -33,13 +33,13 @@ namespace Infrastructure
                 });
 
             IBus bus = ObjectFactory.GetInstance<IBus>();
-            IDocumentStore documentStore = ObjectFactory.GetInstance<IDocumentStore>();
-            SetupEventHandlers(bus, documentStore);
+            var reportingRepository = ObjectFactory.GetInstance<IReportingRepository<PatientDto>>();
+            SetupEventHandlers(bus, reportingRepository);
         }
 
-        private static void SetupEventHandlers(IBus bus, IDocumentStore documentStore)
+        private static void SetupEventHandlers(IBus bus, IReportingRepository<PatientDto> reportingRepository)
         {
-            var patientEventHandler = new PatientView(documentStore);
+            var patientEventHandler = new PatientView(reportingRepository);
             bus.RegisterHandler<PatientCreatedEvent>(patientEventHandler.Handle);
             bus.RegisterHandler<PatientNameChangedEvent>(patientEventHandler.Handle);
             bus.RegisterHandler<PatientRelocatedEvent>(patientEventHandler.Handle);

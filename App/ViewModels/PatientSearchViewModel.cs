@@ -9,12 +9,12 @@ namespace PatientRecords.ViewModels
 {
     public class PatientSearchViewModel : ViewModelBase
     {
-        private IReadRepository _repository = null;
+        private IReportingRepository<PatientDto> _repository = null;
 
         /// <summary>
         /// Initializes a new instance of the PatientSearchViewModel class.
         /// </summary>
-        public PatientSearchViewModel(IReadRepository repository)
+        public PatientSearchViewModel(IReportingRepository<PatientDto> repository)
         {
             _repository = repository;
         }
@@ -99,8 +99,9 @@ namespace PatientRecords.ViewModels
                     _search = new RelayCommand(
                         () =>
                         {
-                            var results = _repository.GetAll<PatientDto>().Where(x => x.Name == SearchText).ToList();
-                            if (results.Count > 0)
+                            var results = _repository.GetAll(x => x.Name == SearchText);
+
+                            if (results.Count() > 0)
                             {
                                 _patientResults = new ObservableCollection<PatientListViewModel>
                                     (

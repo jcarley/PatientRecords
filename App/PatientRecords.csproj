@@ -36,9 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EventStore.Persistence.RavenPersistence">
-      <HintPath>..\packages\CommonDomain\bin\EventStore.Persistence.RavenPersistence.dll</HintPath>
-    </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4, Version=3.0.0.30137, Culture=neutral, PublicKeyToken=e80d33351f9dc0a2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLight.3.0.2\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>

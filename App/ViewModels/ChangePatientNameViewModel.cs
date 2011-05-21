@@ -13,17 +13,17 @@ namespace PatientRecords.ViewModels
     public class ChangePatientNameViewModel : ViewModelBase
     {
         private IBus _bus = null;
-        private IReadRepository _repository = null;
+        private IReportingRepository<PatientDto> _repository = null;
 
-        public ChangePatientNameViewModel(Guid patientId, IBus bus, IReadRepository repository)
+        public ChangePatientNameViewModel(Guid patientId, IBus bus, IReportingRepository<PatientDto> repository)
         {
             _bus = bus;
             _repository = repository;
-            _patient = _repository.GetById<PatientDto>(DtoBase.GetDtoIdOf<PatientDto>(patientId));
+            _patient = _repository.GetById(patientId);
 
             if (_patient != null)
             {
-                _command = new ChangePatientNameCommand(Guid.NewGuid(), _patient.AggregateRootId);
+                _command = new ChangePatientNameCommand(Guid.NewGuid(), _patient.Id);
                 _command.Name = _patient.Name;
             }
         }
@@ -59,7 +59,7 @@ namespace PatientRecords.ViewModels
                     _save = new RelayCommand(() =>
                     {
                         _bus.Send(Command);
-                        Notifications.ShowPatientDetailsMessage.Send(new ShowPatientDetailsEvent(_patient.AggregateRootId));
+                        Notifications.ShowPatientDetailsMessage.Send(new ShowPatientDetailsEvent(_patient.Id));
                     });
                 }
 
@@ -76,7 +76,7 @@ namespace PatientRecords.ViewModels
                 {
                     _cancel = new RelayCommand(() =>
                     {
-                        Notifications.ShowPatientDetailsMessage.Send(new ShowPatientDetailsEvent(_patient.AggregateRootId));
+                        Notifications.ShowPatientDetailsMessage.Send(new ShowPatientDetailsEvent(_patient.Id));
                     });
                 }
 

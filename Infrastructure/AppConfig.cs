@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Infrastructure
 {
     public static class AppConfig
@@ -20,6 +16,14 @@ namespace Infrastructure
             get
             {
                 return "PatientDBEventStore";
+            }
+        }
+
+        public static string PatientDBEventStoreEntities
+        {
+            get
+            {
+                return "PatientDBEventStoreEntities";
             }
         }
     }

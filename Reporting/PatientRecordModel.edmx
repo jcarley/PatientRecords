@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Reporting.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ReportingStoreContainer">
+          <EntitySet Name="Patient" EntityType="Reporting.Store.Patient" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientId" />
+          </Key>
+          <Property Name="PatientId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="15" />
+          <Property Name="Street" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="char" MaxLength="2" />
+          <Property Name="Zip" Type="varchar" MaxLength="5" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Reporting" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="PatientDBEventStoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Patients" EntityType="Reporting.Patient" />
+        </EntityContainer>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientId" />
+          </Key>
+          <Property Name="PatientId" Type="Guid" Nullable="false" ConcurrencyMode="None" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Street" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="Zip" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ReportingStoreContainer" CdmEntityContainer="PatientDBEventStoreEntities">
+          <EntitySetMapping Name="Patients"><EntityTypeMapping TypeName="Reporting.Patient"><MappingFragment StoreEntitySet="Patient">
+            <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="Street" ColumnName="Street" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="Zip" ColumnName="Zip" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="PatientRecordModel">
+        <EntityTypeShape EntityType="Reporting.Patient" Width="1.5" PointX="0.75" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

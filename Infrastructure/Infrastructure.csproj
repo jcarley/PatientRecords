@@ -31,14 +31,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonDomain">
-      <HintPath>..\packages\CommonDomain\bin\CommonDomain.dll</HintPath>
+    <Reference Include="CommonDomain, Version=1.2.0.0, Culture=neutral, PublicKeyToken=ec37a15dc44010cd, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonDomain\lib\CommonDomain.dll</HintPath>
     </Reference>
     <Reference Include="EventStore, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7735eb81c0bd9948, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonDomain\bin\EventStore.dll</HintPath>
+      <HintPath>..\packages\CommonDomain\lib\EventStore.dll</HintPath>
     </Reference>
-    <Reference Include="EventStore.Persistence.RavenPersistence">
-      <HintPath>..\packages\CommonDomain\bin\EventStore.Persistence.RavenPersistence.dll</HintPath>
+    <Reference Include="EventStore.Core">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Persistence.SqlPersistence">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Persistence.SqlPersistence.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Serialization">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Serialization.Json">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Serialization.Json.Wireup">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Serialization.Json.Wireup.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Wireup">
+      <HintPath>..\packages\CommonDomain\lib\EventStore.Wireup.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.2.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CommonDomain\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>

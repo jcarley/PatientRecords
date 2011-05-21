@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonDomain">
-      <HintPath>..\packages\CommonDomain\bin\CommonDomain.dll</HintPath>
+    <Reference Include="CommonDomain, Version=1.2.0.0, Culture=neutral, PublicKeyToken=ec37a15dc44010cd, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonDomain\lib\CommonDomain.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

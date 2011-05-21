@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using PatientRecords.ApplicationFramework;
 using PatientRecords.ApplicationFramework.Events;
 using Reporting;
@@ -45,7 +44,7 @@ namespace PatientRecords.ViewModels
                     _showDetails = new RelayCommand(
                         () =>
                         {
-                            Notifications.ShowPatientDetailsMessage.Send(new ShowPatientDetailsEvent(_patient.AggregateRootId));
+                            Notifications.ShowPatientDetailsMessage.Send(new ShowPatientDetailsEvent(_patient.Id));
                         }
                     );
                 }

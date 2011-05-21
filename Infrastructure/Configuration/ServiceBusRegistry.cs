@@ -5,10 +5,7 @@ using CommonDomain.Persistence;
 using CommonDomain.Persistence.EventStore;
 using EventStore;
 using EventStore.Dispatcher;
-using EventStore.Serialization;
 using Infrastructure.Bus;
-using Raven.Client;
-using Raven.Client.Document;
 using Reporting;
 using StructureMap.Configuration.DSL;
 
@@ -19,10 +16,10 @@ namespace Infrastructure.Configuration
     {
         public ServiceBusRegistry()
         {
-            For<IDocumentStore>()
-                .Singleton()
-                .Use(new DocumentStore { ConnectionStringName = AppConfig.RavenDBConnectionStringName })
-                .OnCreation<IDocumentStore>(store => store.Initialize());
+            For<IReportingRepository<PatientDto>>()
+                .Use<SqlReportingRepository>()
+                .Ctor<string>()
+                    .Is(AppConfig.PatientDBEventStoreEntities);
 
             var bus = new InProcessBus();
 
@@ -37,9 +34,6 @@ namespace Infrastructure.Configuration
             For<IRepository>()
                 .Use(repository);
 
-            For<IReadRepository>()
-                .Use<RavenReadRepository>();
-
             For<IHandles<CreatePatientCommand>>()
                 .Use<CreatePatientCommandHandler>();
 
@@ -49,13 +43,23 @@ namespace Infrastructure.Configuration
 
         private IStoreEvents GetInitializedEventStore(IPublishMessages bus)
         {
-            string name = AppConfig.SqlDBConnectionStringName;
-
-            
             return Wireup.Init()
-                .UsingRavenPersistence(AppConfig.RavenDBConnectionStringName, new NullDocumentSerializer())
+                .UsingSqlPersistence(AppConfig.SqlDBConnectionStringName)
+                    //.InitializeStorageEngine()
+                    .UsingJsonSerialization()
+                        .Compress()
                 .UsingSynchronousDispatcher(bus)
                 .Build();
+
+   //         .UsingSqlPersistence("EventStore")
+            //	.InitializeStorageEngine()
+            //	.UsingJsonSerialization()
+            //		.Compress()
+            //		.EncryptWith(EncryptionKey)
+            //.HookIntoPipelineUsing(new[] { new AuthorizationPipelineHook() })
+            //.UsingAsynchronousDispatcher()
+            //	.PublishTo(new DelegateMessagePublisher(DispatchCommit))
+            //.Build();
         }
     }
 }

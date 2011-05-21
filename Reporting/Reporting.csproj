@@ -31,14 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EventStore.Persistence.RavenPersistence">
-      <HintPath>..\packages\CommonDomain\bin\EventStore.Persistence.RavenPersistence.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,13 +47,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DtoBase.cs" />
-    <Compile Include="IReadRepository.cs" />
+    <Compile Include="IReportingRepository.cs" />
     <Compile Include="PatientDto.cs" />
+    <Compile Include="PatientRecordModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PatientRecordModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RavenReadRepository.cs" />
+    <Compile Include="SqlReportingRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="PatientRecordModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PatientRecordModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

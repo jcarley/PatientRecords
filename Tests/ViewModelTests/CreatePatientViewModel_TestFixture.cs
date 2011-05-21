@@ -33,9 +33,9 @@ namespace Tests.ViewModelTests
 
             viewModel.CreateCustomer.Execute(null);
 
-            IReadRepository repository = ObjectFactory.GetInstance<IReadRepository>();
+            IReportingRepository<PatientDto> repository = ObjectFactory.GetInstance<IReportingRepository<PatientDto>>();
 
-            var patient = repository.GetAll<PatientDto>().Where(x => x.Name == "Jeff Carley").FirstOrDefault();
+            var patient = repository.GetAll(x => x.Name == "Jeff Carley").FirstOrDefault();
 
             patient.ShouldNotBeNull();
             patient.Name.ShouldEqual("Jeff Carley");

@@ -24,7 +24,7 @@ namespace Tests.ViewModelTests
         {
             PatientDto expectedDto = new PatientDto()
             {
-                AggregateRootId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = "Jeff Carley",
                 Status = "Active",
                 Street = "123 Main St",
@@ -35,8 +35,8 @@ namespace Tests.ViewModelTests
 
             var query = new EnumerableQuery<PatientDto>(new List<PatientDto>() { expectedDto });
 
-            IReadRepository repository = MockRepository.GenerateMock<IReadRepository>();
-            repository.Stub(repo => repo.GetAll<PatientDto>()).Return(query);
+            IReportingRepository<PatientDto> repository = MockRepository.GenerateMock<IReportingRepository<PatientDto>>();
+            repository.Stub(repo => repo.GetAll()).Return(query);
 
             PatientSearchViewModel viewModel = new PatientSearchViewModel(repository);
             viewModel.SearchText = "Jeff Carley";
@@ -50,7 +50,7 @@ namespace Tests.ViewModelTests
         {
             PatientDto expectedDto = new PatientDto()
             {
-                AggregateRootId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = "Jeff Carley",
                 Status = "Active",
                 Street = "123 Main St",
@@ -61,8 +61,8 @@ namespace Tests.ViewModelTests
 
             var query = new EnumerableQuery<PatientDto>(new List<PatientDto>() { expectedDto });
 
-            IReadRepository repository = MockRepository.GenerateMock<IReadRepository>();
-            repository.Stub(repo => repo.GetAll<PatientDto>()).Return(query);
+            IReportingRepository<PatientDto> repository = MockRepository.GenerateMock<IReportingRepository<PatientDto>>();
+            repository.Stub(repo => repo.GetAll()).Return(query);
 
             PatientSearchViewModel viewModel = new PatientSearchViewModel(repository);
 
