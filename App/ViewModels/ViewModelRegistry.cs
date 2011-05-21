@@ -1,4 +1,5 @@
 ﻿using StructureMap.Configuration.DSL;
+using PatientRecords.Views;
 
 namespace PatientRecords.ViewModels
 {
